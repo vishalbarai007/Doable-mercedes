@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@font-face { font-family: swiss721; src: url(/fonts/swiss-9bc057cec118b1cc.woff2) format("woff2"); font-display: swap; font-weight: 300; }
+@font-face { font-family: swiss721; src: url(/fonts/swiss-81a888d17bece859.woff2) format("woff2"); font-display: swap; font-weight: 400; }
+@font-face { font-family: swiss721; src: url(/fonts/swiss-c2fa934218bdbba0.woff2) format("woff2"); font-display: swap; font-weight: 500; }
+@font-face { font-family: swiss721; src: url(/fonts/swiss-3c2dfc76aa18c08e.woff2) format("woff2"); font-display: swap; font-weight: 700; }
+@font-face { font-family: "swiss721 Fallback"; src: local("Arial"); ascent-override: 95.42%; descent-override: 23.38%; line-gap-override: 0%; size-adjust: 100.93%; }
+
+@theme {
+  --font-sans: swiss721, "swiss721 Fallback", sans-serif;
+  --font-swiss: swiss721, "swiss721 Fallback", sans-serif;
+  --font-futura: "futura-pt-condensed", sans-serif;
+  --color-ink: #101010;
+}
+
+html { overflow-x: clip; }
+body { font-family: var(--font-sans); color: oklch(0.145 0 0); background: #fff; }
+
+.container { width: 100%; max-width: none; margin-inline: auto; padding-inline: 16px; }
+@media (min-width: 64rem) { .container { padding-inline: 40px; } }
+
+.underline-field {
+  --underline-fill: currentColor; --underline-track: color-mix(in srgb, currentColor 20%, transparent);
+  border-bottom: 1px solid var(--underline-track);
+  background-image: linear-gradient(var(--underline-fill), var(--underline-fill));
+  background-position: 0 100%; background-repeat: no-repeat; background-size: 0 1px; background-origin: border-box;
+  transition: background-size .4s cubic-bezier(.625, .05, 0, 1);
+}
+.underline-field:focus-within { background-size: 100% 1px; }
+
+.underline-link > :is(a, button) { display: inline; max-width: 100%; }
+.underline-link::after {
+  content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 100%; background: currentColor;
+  transform: scaleX(0); transform-origin: right; transition: transform .4s cubic-bezier(.625, .05, 0, 1);
+}
+.underline-link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+.trim { text-box: trim-both cap alphabetic; }
